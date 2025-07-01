@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GitHub Webhook Events</title>
+  <script>
+    async function fetchEvents() {
+      const type = document.getElementById("eventType").value;
+      const res = await fetch(`/events${type ? '?type=' + type : ''}`);
+      const data = await res.json();
+
+      const list = document.getElementById("eventList");
+      list.innerHTML = '';
+
+      if (data.length === 0) {
+        list.innerHTML = "<li>No events found.</li>";
+        return;
+      }
+
+      data.forEach(event => {
+        const li = document.createElement('li');
+        li.textContent = `[${event.event_type}] ${event.author} at ${event.timestamp}`;
+        list.appendChild(li);
+      });
+    }
+
+    window.onload = fetchEvents;
+  </script>
+</head>
+<body>
+  <h1>GitHub Webhook Events</h1>
+
+  <label for="eventType">Filter by event type:</label>
+  <select id="eventType" onchange="fetchEvents()">
+    <option value="">All</option>
+    <option value="push">Push</option>
+    <option value="issues">Issues</option>
+    <option value="pull_request">Pull Request</option>
+  </select>
+
+  <ul id="eventList"></ul>
+</body>
+</html>
