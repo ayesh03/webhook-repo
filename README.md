@@ -120,11 +120,9 @@ The UI fetches updates from MongoDB every 15 seconds and shows the latest events
 1. Go to your `action-repo`
 2. Navigate to: **Settings → Webhooks → Add webhook**
 3. Fill the form:
-   - **Payload URL**: `https://<your-ngrok-url>/webhook`
+   - **Payload URL**: `https://1c07-203-192-253-152.ngrok-free.app/webhook`
    - **Content Type**: `application/json`
    - **Events**: Select "Just the push event", "Pull requests", and "Issues"
-
-> Example ngrok URL: `https://1c07-203-192-253-152.ngrok-free.app/webhook`
 
 ---
 
